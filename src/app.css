@@ -72,3 +72,7 @@ html {
   #profile .card, #parents .card{
       border-top: none;
   }
+  #mapUserActual, .mapa-reporte{
+    height:300px;
+    background:#6699cc;
+    }

@@ -9,9 +9,22 @@
     <link rel="stylesheet" href="bower_components/animate.css/animate.css">
     <link rel="stylesheet" href="app.css">
     <title>TooVida! - Encuentra personas en desastres naturales</title>
-    <script src="bower_components/jquery/dist/jquery.slim.min.js" ></script>
+    <script src="bower_components/jquery/dist/jquery.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" ></script>
+    
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCwrjgyavfxMp_UG_Jz-bpBye-ndjZG9ps"></script>
+  <script src="bower_components/gmaps/gmaps.js"></script>
+  <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+      map = new GMaps({
+        div: '#mapUserActual',
+        lat: -12.043333,
+        lng: -77.028333
+      });
+    });
+  </script>
   </head>
   <body>
     <header>
@@ -38,7 +51,7 @@
           </div>
         </nav>
       </header>
-
+      
       <!-- Begin page content -->
       <main role="main" class="container">
 
@@ -86,9 +99,10 @@
                             <button type="button" id="addRelative" class="btn btn-lg btn-block btn-success">
                                 <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
                                  Agregar ID lider</button>
+                                 <div id="mapUserActual"></div>
                         </div>
                       
-
+                        
                     </div>
                   </div>
 
@@ -127,9 +141,9 @@
     };
     firebase.initializeApp(config);
   </script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDLDyjyQtAUWyH-5z6ANlYcgwQ8le26_3w"></script>
-  <script src="bower_components/gmaps/gmaps.js"></script>
+  
   <script src="js/profile.js"></script>
   <script src="js/appFlowProfile.js"></script>
+  
   </body>
 </html>
