@@ -67,9 +67,10 @@ const addRelative = () => {
 }
 // MOSTRAR MODAL
 
-function mostrarModal(nombre,lat, lng) {
+function mostrarModal(nombre,lat, lng, message) {
 
   $("#modal-title").html(nombre);
+  $("#messageUser").html(message);
   $("#modal-one").modal("show");
   if(lat !== undefined && lng !== undefined){
     map = new GMaps({
@@ -115,6 +116,34 @@ const shareLocation = (userUID) => {
     })
   })
 }
+//funcion para mandar ubicacion a mi grupo familiar
+const shareLocationState = (userUID,message) => {
+  getDataFirebase('users/'+userUID).then(dataUser => {
+    console.log(dataUser)
+  })
+  getDataFirebase('users/'+userUID).then(userData => {
+    getDataFirebase('groups/'+userData.group).then(groupData => {
+      membersOfGroup = Object.keys(groupData);
+      membersOfGroup.forEach(memberID => {
+        if(userUID===groupData[memberID].memberName){
+          console.log('este es mi usuario')
+          console.log(groupData[memberID])
+          memberNewData = groupData[memberID];
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position.coords.latitude)
+            memberNewData.location = {
+              lat:position.coords.latitude,
+              lng:position.coords.longitude
+            };
+            memberNewData.message = message;
+            firebase.database().ref("groups/" + userData.group+'/'+memberID)
+            .set(memberNewData)
+          });
+        }
+      })
+    })
+  })
+}
 //funcion para cargar a todas las personas dentro de mi red familiar
 const chargeGroupMembers = (currentUserUID) => {
   getDataFirebase('users/'+currentUserUID).then(userData => {
@@ -133,17 +162,17 @@ const chargeGroupMembers = (currentUserUID) => {
               <div class="row">
                 <div class="col-md-2">
                   <div class="text-center">
-                    <a href="#" onclick="mostrarModal('${memberData.nombre}','${groupData[memberUID].location.lat}','${groupData[memberUID].location.lng}');" >
+                    <a href="#" onclick="mostrarModal('${memberData.nombre}','${groupData[memberUID].location.lat}','${groupData[memberUID].location.lng}','${groupData[memberUID].message}');" >
                     <img width='100px' class="img-avatar" src= ${memberData.foto} />
                     </a>
                   </div>
                 </div>
                 <div class="col-md-10">
-                  <a href="#" id=${'#iduser-'+memberData.uid} onclick="mostrarModal('${memberData.nombre}','${groupData[memberUID].location.lat}','${groupData[memberUID].location.lng}');"  class="user-details">
+                  <a href="#" id=${'#iduser-'+memberData.uid} onclick="mostrarModal('${memberData.nombre}','${groupData[memberUID].location.lat}','${groupData[memberUID].location.lng}','${groupData[memberUID].message}');"  class="user-details">
                     <h3 class="user-title">${memberData.nombre}</h3>
                     <p class="user-type">Pariente</p>
                   </a>
-              </div> 
+              </div>
             </div>`;
           })
         })
