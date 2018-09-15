@@ -21,7 +21,7 @@ const getDataFirebase = (path) => {
   })
 }
 
-//funcion para aÃ±adir miembros de la red familiar
+//funcion para añadir miembros de la red familiar
 const addRelative = () => {
   //antes de agregar a un lider, este debe existir
   let leaderUID = document.getElementById('leaderUID').value;
@@ -52,6 +52,7 @@ const addRelative = () => {
           firebase.database().ref("users/" + myUID)
           .set(userData)
         })
+        chargeGroupMembers(myUID);
         console.log('Ya estas en la red familiar')
       }
     })
@@ -68,7 +69,7 @@ const chargeGroupMembers = (currentUserUID) => {
         membersKeys = Object.keys(groupData);
         membersKeys.forEach(memberUID => {
           getDataFirebase('users/'+groupData[memberUID]).then(memberData => {
-            members.innerHTML += `<div> ${memberData.nombre}</div>`;
+            members.innerHTML += `<div>${memberData.nombre} <img width='100px' src= ${memberData.foto} /> <button id=${memberData.uid} onclick="stadistics('${memberData.uid}')">Reporte</button></div>`;
           })
         })
       })
@@ -76,6 +77,41 @@ const chargeGroupMembers = (currentUserUID) => {
       console.log('no perteneces a una red familiar aun');
     }
   })
+}
+//funcion para estadisticas de las personas de mi red familiar
+const stadistics = (memberUID) => {
+  console.log(memberUID);
+
+  let modalForRestaurantContainer = document.getElementById('modalsForRestaurants');
+  modalsForRestaurants.innerHTML += `
+  <div class="modal fade" id=${'R'+objRestaurant.id} role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">${objRestaurant.name}</h4>
+          <img src=""/>
+        </div>
+        <div class="modal-body">
+          <div id=${'M'+objRestaurant.id}></div>
+          <p>Ubicado en : ${objRestaurant.vicinity}</p>
+          <p>Abierto ahora: ${answerOpenNow}</p>
+          <p>Calificación: ${objRestaurant.rating}</p>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
 }
 
 //funcion para copiar el id del usuario
