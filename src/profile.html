@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>Bienvenid@ <p id="userName"></p> </p>
+    <p id="userPhoto"></p>
+    <p id="userEmail"></p>
+    <p>Mi ID de usuario</p>
+    <input type="text" name="" value="" id="userUID" readonly>
+    <button type="button" id="copyID">Copiar mi ID</button>
+    <p>Agregar el ID del lider de la familia</p>
+    <p>Importante: Si tu eres el lider, agrega tu mismo ID en la siguiente casilla!</p>
+    <input type="text" name="" value="">
+    <button type="button" id="addRelative">Agregar ID lider</button>
+
+    <button type="button" name="button" id="closeSession">Salir</button>
+
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCNzMiSYwpG6jsaHCN6RNJjaPTJYM67tMI",
+      authDomain: "bluetubers-hackaton.firebaseapp.com",
+      databaseURL: "https://bluetubers-hackaton.firebaseio.com",
+      projectId: "bluetubers-hackaton",
+      storageBucket: "bluetubers-hackaton.appspot.com",
+      messagingSenderId: "60291013042"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="js/profile.js"></script>
+  <script src="js/appFlowProfile.js"></script>
+  </body>
+</html>
