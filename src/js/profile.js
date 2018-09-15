@@ -77,6 +77,10 @@ function mostrarModal(nombre,lat, lng) {
       lat,
       lng
     });
+    map.addMarker({
+      lat,
+      lng
+    });
          
   } else {
     console.log('Esta persona no ha compartido su ubicacion aun')
