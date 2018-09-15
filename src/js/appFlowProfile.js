@@ -22,10 +22,10 @@ function getParameterByName(name) {
 }
 
 var state = getParameterByName('estado');
-console.log(state);
-if(state !=''){
+if(state !==''){
   console.log(state)
-  if(state =='1'){
+  if(state ==='1'){
+    console.log('bien')
     shareLocationState(userUID,'Estoy bien');
   } else {
     shareLocationState(userUID,'Estoy mal, Ayuda');
