@@ -5,5 +5,8 @@ document.getElementById('closeSession').addEventListener('click', () => {
   closeSession();
 })
 document.getElementById('copyID').addEventListener('click', () => {
-  copyResult();
+  copyCurrentUserUID();
+})
+document.getElementById('addRelative').addEventListener('click', () => {
+  addRelative();
 })
