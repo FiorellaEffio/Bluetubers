@@ -1,7 +1,7 @@
-//cargando todo del muro
+//cargando data del usuario para el muro
 const welcomeUser = (uid) => {
-  let path = 'users/'+uid;
-  getDataFirebase(path).then(userData => {
+  let pathUser = 'users/'+uid;
+  getDataFirebase(pathUser).then(userData => {
     document.getElementById("userName").innerHTML = userData.nombre;
     document.getElementById('userPhoto').innerHTML = "<img id='user-photo' width='100px' class='circle img-responsive' src='"+userData.foto+"  '/>"
     document.getElementById('userEmail').innerHTML = userData.email;
@@ -9,7 +9,7 @@ const welcomeUser = (uid) => {
     document.getElementById('userUID').readOnly = true;
   })
 }
-//funcion con promesa
+//funcion con promesa para retornar data
 const getDataFirebase = (path) => {
   return new Promise((resolved, reject) => {
     let data = firebase.database().ref().child(path);
@@ -31,13 +31,11 @@ const addRelative = () => {
     let profile = firebase.database().ref().child('groups/' + leaderUID);
     firebase.database().ref("groups/" + leaderUID)
     .push(leaderUID)
-  } else {
-    let myRelatives = firebase.database().ref().child('groups/'+leaderUID);
-    myRelatives.on('value', snap => {
-      let userData = JSON.stringify(snap.val(),null,3);//tbm funciona un solo parametro
-      userData = JSON.parse(userData);
-      console.log(userData);
-      if(userData == null) {
+  } else if (leaderUID !== '') {
+    let pathGroup = 'groups/'+leaderUID;
+    getDataFirebase(pathGroup).then(groupData => {
+      console.log(groupData);
+      if(groupData == null) {
         console.log('No existe el lider');
       } else {
         firebase.database().ref("groups/" + leaderUID)
@@ -45,23 +43,9 @@ const addRelative = () => {
         console.log('Ya estas en la red familiar')
       }
     })
+  } else {
+    console.log('Ingresa el UID de tu lider')
   }
-
-
-  // if(leaderUID) {
-  //   document.getElementById('currentPost').value = '';
-  //   let optionValue = document.getElementById('privateOptions');
-  //   optionValue = optionValue.options[optionValue.selectedIndex].value;
-  //   firebase.database().ref('users/'+userUID+'/publicaciones').push({
-  //     optionValue,
-  //     message
-  //   });
-  //   let muroPosts = document.getElementById('myPosts');
-  //   muroPosts.innerHTML = '';
-  //   chargePosts(userUID, muroPosts);
-  // } else {
-  //   alert('No se permite publicar algo vacio')
-  // }
 }
 
 //funcion para copiar el id del usuario
