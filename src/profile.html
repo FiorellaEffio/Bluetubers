@@ -15,16 +15,7 @@
     
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCwrjgyavfxMp_UG_Jz-bpBye-ndjZG9ps"></script>
   <script src="bower_components/gmaps/gmaps.js"></script>
-  <script type="text/javascript">
-    var map;
-    $(document).ready(function(){
-      map = new GMaps({
-        div: '#mapUserActual',
-        lat: -12.043333,
-        lng: -77.028333
-      });
-    });
-  </script>
+  
   </head>
   <body>
     <header>
@@ -128,6 +119,31 @@
       </footer>
 
 
+<!-- MODAL -->
+<div id="modal-one" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="modal-title" class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+
+          <div id="mapa-pariente">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -144,6 +160,15 @@
   
   <script src="js/profile.js"></script>
   <script src="js/appFlowProfile.js"></script>
-  
+  <script type="text/javascript">
+    var map;
+    $(document).ready(function(){
+      map = new GMaps({
+        div: '#mapUserActual',
+        lat: -12.043333,
+        lng: -77.028333
+      });
+    });
+  </script>
   </body>
 </html>

@@ -65,6 +65,20 @@ const addRelative = () => {
     console.log('Ingresa el UID de tu lider')
   }
 }
+// MOSTRAR MODAL
+
+function mostrarModal(nombre) {
+  
+  
+  $("#modal-title").html(nombre);
+  $("#modal-one").modal("show");
+  map = new GMaps({
+    div: '#mapa-pariente',
+    lat: -12.043333,
+    lng: -77.028333
+  });
+}
+
 //funcion para cargar a todas las personas dentro de mi red familiar
 const chargeGroupMembers = (currentUserUID) => {
   getDataFirebase('users/'+currentUserUID).then(userData => {
@@ -82,29 +96,9 @@ const chargeGroupMembers = (currentUserUID) => {
               <div class="card-body">
               <h1>${memberData.nombre}</h1>
               <img width='100px' src= ${memberData.foto} />
-              <button type="button" class="btn" data-toggle="modal" data-target=${'#R'+memberData.uid}>Reporte</button>
+              <button type="button" onclick="mostrarModal('${memberData.nombre}');" class="btn" data-toggle="modal" data-target=${'#R'+memberData.uid}>Reporte</button>
               </div>
             </div>`;
-            modalsForMemberStadistics.innerHTML += `
-            <div class="modal fade" id=${'R'+memberData.uid} role="dialog">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">${memberData.nombre}</h4>
-                    <img width='100px' src= ${memberData.foto} />
-                  </div>
-                  <div class="modal-body">
-                    <div id=${'M'+memberData.uid}></div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            `;
           })
         })
       })
