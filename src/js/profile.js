@@ -21,16 +21,18 @@ const getDataFirebase = (path) => {
   })
 }
 
-//funcion para añadir miembros de la red familiar
+//funcion para aï¿½adir miembros de la red familiar
 const addRelative = () => {
   //antes de agregar a un lider, este debe existir
   let leaderUID = document.getElementById('leaderUID').value;
   let myUID = document.getElementById('userUID').value;
   if(leaderUID === myUID) {
     console.log('eres lider');
-    let profile = firebase.database().ref().child('groups/' + leaderUID);
+    let memberStats = {
+      memberName: leaderUID
+    };
     firebase.database().ref("groups/" + leaderUID)
-    .push(leaderUID)
+    .push(memberStats)
     getDataFirebase('users/'+myUID).then(userData => {
       console.log(userData)
       userData.group = leaderUID;
@@ -44,8 +46,11 @@ const addRelative = () => {
       if(groupData == null) {
         console.log('No existe el lider');
       } else {
+        let memberStats = {
+          memberName: myUID
+        };
         firebase.database().ref("groups/" + leaderUID)
-        .push(myUID)
+        .push(memberStats);
         getDataFirebase('users/'+myUID).then(userData => {
           console.log(userData)
           userData.group = leaderUID;
@@ -68,8 +73,10 @@ const chargeGroupMembers = (currentUserUID) => {
       let modalsForMemberStadistics = document.getElementById('modalsForMemberStadistics');
       getDataFirebase('groups/'+ userData.group).then(groupData => {
         membersKeys = Object.keys(groupData);
+        console.log(membersKeys)
         membersKeys.forEach(memberUID => {
-          getDataFirebase('users/'+groupData[memberUID]).then(memberData => {
+          console.log(groupData[memberUID])
+          getDataFirebase('users/'+groupData[memberUID].memberName).then(memberData => {
             members.innerHTML += `
             <div class="card">
               <div class="card-body">
