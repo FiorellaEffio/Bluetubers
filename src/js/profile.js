@@ -3,7 +3,7 @@ const welcomeUser = (uid) => {
   let pathUser = 'users/'+uid;
   getDataFirebase(pathUser).then(userData => {
     document.getElementById("userName").innerHTML = userData.nombre;
-    document.getElementById('userPhoto').innerHTML = "<img id='user-photo' width='100px' class='circle img-responsive' src='"+userData.foto+"  '/>"
+    document.getElementById('userPhoto').innerHTML = "<img id='user-photo' width='100px' class='img-avatar' src='"+userData.foto+"  '/>"
     document.getElementById('userEmail').innerHTML = userData.email;
     document.getElementById('userUID').value = userData.uid;
     document.getElementById('userUID').readOnly = true;
@@ -21,7 +21,7 @@ const getDataFirebase = (path) => {
   })
 }
 
-//funcion para añadir miembros de la red familiar
+//funcion para aï¿½adir miembros de la red familiar
 const addRelative = () => {
   //antes de agregar a un lider, este debe existir
   let leaderUID = document.getElementById('leaderUID').value;
@@ -97,7 +97,7 @@ const stadistics = (memberUID) => {
           <div id=${'M'+objRestaurant.id}></div>
           <p>Ubicado en : ${objRestaurant.vicinity}</p>
           <p>Abierto ahora: ${answerOpenNow}</p>
-          <p>Calificación: ${objRestaurant.rating}</p>
+          <p>Calificaciï¿½n: ${objRestaurant.rating}</p>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>

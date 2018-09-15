@@ -37,3 +37,29 @@ html {
   .bg-orange{
       background: #eb6e1c;
   }
+  .text-username{
+      font-weight: normal;
+  }
+  .img-avatar{
+      border-radius: 50%;
+  }
+  .profile-data p{
+      padding: 0;
+      margin: 0;
+  }
+  .profile-data{
+      padding-top: 20px;
+  }
+  .profile-option{
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid #cccccc;
+      text-align: center;
+  }
+  .title-section{
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: #7878bd;
+
+  }
