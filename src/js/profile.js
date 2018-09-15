@@ -67,18 +67,49 @@ const addRelative = () => {
 }
 // MOSTRAR MODAL
 
-function mostrarModal(nombre) {
-  
-  
+function mostrarModal(nombre,lat, lng) {
+  console.log(lat)
   $("#modal-title").html(nombre);
   $("#modal-one").modal("show");
-  map = new GMaps({
-    div: '#mapa-pariente',
-    lat: -12.043333,
-    lng: -77.028333
-  });
-}
+  if(lat !== undefined && lng !== undefined){
+    map = new GMaps({
+      div: '#mapa-pariente',
+      lat,
+      lng
+    });
+  } else {
+    console.log('Esta persona no ha compartido su ubicacion aun')
+  }
 
+}
+//funcion para mandar ubicacion a mi grupo familiar
+const shareLocation = (userUID) => {
+  console.log(userUID)
+  getDataFirebase('users/'+userUID).then(dataUser => {
+    console.log(dataUser)
+  })
+  getDataFirebase('users/'+userUID).then(userData => {
+    getDataFirebase('groups/'+userData.group).then(groupData => {
+      membersOfGroup = Object.keys(groupData);
+      membersOfGroup.forEach(memberID => {
+        if(userUID===groupData[memberID].memberName){
+          console.log('este es mi usuario')
+          console.log(groupData[memberID])
+          memberNewData = groupData[memberID];
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position.coords.latitude)
+            memberNewData.location = {
+              lat:position.coords.latitude,
+              lng:position.coords.longitude
+            };
+            firebase.database().ref("groups/" + userData.group+'/'+memberID)
+            .set(memberNewData)
+          });
+        }
+      })
+    })
+  })
+}
 //funcion para cargar a todas las personas dentro de mi red familiar
 const chargeGroupMembers = (currentUserUID) => {
   getDataFirebase('users/'+currentUserUID).then(userData => {
@@ -91,6 +122,7 @@ const chargeGroupMembers = (currentUserUID) => {
         membersKeys.forEach(memberUID => {
           console.log(groupData[memberUID])
           getDataFirebase('users/'+groupData[memberUID].memberName).then(memberData => {
+            console.log(groupData[memberUID].location.lat)
             members.innerHTML += `
             <div class="card-user">
               <div class="row">

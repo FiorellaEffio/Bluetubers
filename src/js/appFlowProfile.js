@@ -11,3 +11,6 @@ document.getElementById('copyID').addEventListener('click', () => {
 document.getElementById('addRelative').addEventListener('click', () => {
   addRelative();
 })
+document.getElementById('shareLocation').addEventListener('click', () => {
+  shareLocation(userUID);
+})
