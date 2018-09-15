@@ -68,7 +68,7 @@ const addRelative = () => {
 // MOSTRAR MODAL
 
 function mostrarModal(nombre,lat, lng) {
-  console.log(lat)
+
   $("#modal-title").html(nombre);
   $("#modal-one").modal("show");
   if(lat !== undefined && lng !== undefined){
@@ -77,6 +77,7 @@ function mostrarModal(nombre,lat, lng) {
       lat,
       lng
     });
+         
   } else {
     console.log('Esta persona no ha compartido su ubicacion aun')
   }
@@ -128,13 +129,13 @@ const chargeGroupMembers = (currentUserUID) => {
               <div class="row">
                 <div class="col-md-2">
                   <div class="text-center">
-                    <a href="#" onclick="mostrarModal('${memberData.nombre}');">
+                    <a href="#" onclick="mostrarModal('${memberData.nombre}','${groupData[memberUID].location.lat}','${groupData[memberUID].location.lng}');" >
                     <img width='100px' class="img-avatar" src= ${memberData.foto} />
                     </a>
                   </div>
                 </div>
                 <div class="col-md-10">
-                  <a href="#" id=${'#iduser-'+memberData.uid} onclick="mostrarModal('${memberData.nombre}');" class="user-details">
+                  <a href="#" id=${'#iduser-'+memberData.uid} onclick="mostrarModal('${memberData.nombre}','${groupData[memberUID].location.lat}','${groupData[memberUID].location.lng}');"  class="user-details">
                     <h3 class="user-title">${memberData.nombre}</h3>
                     <p class="user-type">Pariente</p>
                   </a>
