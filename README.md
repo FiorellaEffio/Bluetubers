@@ -6,9 +6,9 @@ Esta aplicación pretende servir de prevención para la población peruana ante 
 
 Podremos diferenciar lugares seguros(verde), lugares sin información(amarillo), lugares peligrosos(rojo) mediante la evaluación y alerta de los usuarios siendo validados despues de la verificación de entidades responsables como bomberos, policías para que la información sea verídica.
 
-##¿Como funciona?
+## ¿Como funciona?
 
-###Usuarios
+### Usuarios
 
 El usuario debe crear una red familiar dentro de la aplicación con el fin de solo procesar información relevante para ellos(familiares).
 
@@ -18,7 +18,7 @@ Dentro de la aplicación podremos encontrar un mapa de zonas seguras, zonas peli
 
 Este mapa permanecerá activamente actualizado gracias a los usuarios que reporten incidencias en alguna zona, despues de reportarlas se procede a verificar la informacion con entidades responsables y posteriormente actualizando la información.
 
-###Rescatistas
+### Rescatistas
 
 En la aplicación tendremos dos tipos de usuarios, usuarios normales y rescatistas, los usuarios normales son los que solo utilizaran la aplicación para su red familiar y de manera informativa para encontrar beneficios propios, los rescatistas podemos ser quienes deseemos y tengamos las ganas de apoyar en un siniestro a nuestros pares.
 
