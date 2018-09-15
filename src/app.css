@@ -85,12 +85,44 @@ html {
     margin-bottom: 10px;
     padding: 10px 5px;
     border-bottom: 1px solid #cdcdcd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #C8C8C8;
+    border: 1px solid #e6e6e6;
+}
+.card-user:hover{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 5px;
+    border-bottom: 1px solid #cdcdcd;
+    border-radius: 10px;
+    box-shadow: 0 10px 18px #C8C8C8;
+    border: 1px solid #e6e6e6;
 }
 .user-title{
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #7878bd;
 }
 .user-type{
     font-size: 14px;
     color: #666666;
 }
+
+
+/* Large desktop */
+@media (min-width: 1200px) {  }
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {  }
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {  }
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) { 
+
+    .user-details{
+        text-align: center;
+    }
+ }
