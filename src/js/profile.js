@@ -82,7 +82,7 @@ function mostrarModal(nombre,lat, lng, message) {
       lat,
       lng
     });
-         
+
   } else {
     console.log('Esta persona no ha compartido su ubicacion aun')
   }
@@ -90,10 +90,6 @@ function mostrarModal(nombre,lat, lng, message) {
 }
 //funcion para mandar ubicacion a mi grupo familiar
 const shareLocation = (userUID) => {
-  console.log(userUID)
-  getDataFirebase('users/'+userUID).then(dataUser => {
-    console.log(dataUser)
-  })
   getDataFirebase('users/'+userUID).then(userData => {
     getDataFirebase('groups/'+userData.group).then(groupData => {
       membersOfGroup = Object.keys(groupData);
@@ -118,9 +114,6 @@ const shareLocation = (userUID) => {
 }
 //funcion para mandar ubicacion a mi grupo familiar
 const shareLocationState = (userUID,message) => {
-  getDataFirebase('users/'+userUID).then(dataUser => {
-    console.log(dataUser)
-  })
   getDataFirebase('users/'+userUID).then(userData => {
     getDataFirebase('groups/'+userData.group).then(groupData => {
       membersOfGroup = Object.keys(groupData);
