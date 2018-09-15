@@ -25,7 +25,7 @@ var state = getParameterByName('estado');
 console.log(state);
 if(state !=''){
   console.log(state)
-  if(state =='1#'){
+  if(state =='1'){
     shareLocationState(userUID,'Estoy bien');
   } else {
     shareLocationState(userUID,'Estoy mal, Ayuda');
