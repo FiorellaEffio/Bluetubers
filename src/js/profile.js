@@ -149,7 +149,6 @@ const chargeGroupMembers = (currentUserUID) => {
         membersKeys.forEach(memberUID => {
           console.log(groupData[memberUID])
           getDataFirebase('users/'+groupData[memberUID].memberName).then(memberData => {
-            console.log(groupData[memberUID].location.lat)
             members.innerHTML += `
             <div class="card-user">
               <div class="row">
