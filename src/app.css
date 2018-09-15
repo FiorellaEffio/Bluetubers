@@ -7,7 +7,7 @@ html {
   }
   body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    margin-bottom: 100px;
   }
   .footer {
     position: absolute;
@@ -23,7 +23,7 @@ html {
   /* Not required for template or sticky footer method. */
   
   body > .container {
-    padding: 60px 15px 0;
+    padding: 20px 15px 0;
   }
   
   .footer > .container {
@@ -62,4 +62,13 @@ html {
       margin-bottom: 20px;
       color: #7878bd;
 
+  }
+  .footer .text-footer{
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        text-align: center;
+  }
+  #profile .card, #parents .card{
+      border-top: none;
   }

@@ -76,17 +76,17 @@
                             <input type="text" name="" value="" class="form-control" id="userUID" readonly>
                             <br>
 
-                            <button type="button" id="copyID" class="btn btn-lg btn-block btn-warning">Copiar mi ID</button>
+                            <button type="button" id="copyID" class="btn btn-lg btn-block btn-warning"><i class="fa fa-files-o fa-lg" aria-hidden="true"></i>
+                               Copiar mi ID</button>
 
                             <h3 class="title-section">Agregar el ID del lider de la familia</h3>
                             <p><strong>Importante:</strong> Si tu eres el lider, agrega tu mismo ID en la siguiente casilla!</p>
                             <input type="text" name="" value="" class="form-control" id="leaderUID">
                             <br>
-                            <button type="button" id="addRelative" class="btn btn-lg btn-block btn-success">Agregar ID lider</button>
+                            <button type="button" id="addRelative" class="btn btn-lg btn-block btn-success">
+                                <i class="fa fa-plus-square fa-lg" aria-hidden="true"></i>
+                                 Agregar ID lider</button>
                         </div>
-                        
-                        
-                        
                       
 
                     </div>
@@ -95,11 +95,13 @@
 
               </div>
               <div class="tab-pane fade" id="parents" role="tabpanel" aria-labelledby="parents-tab">
-                  <div class="container">
-                      <!-- div para mostrar miembros de la red -->
+                  <div class="card">
+                    <div class="card-body">
+                        <!-- div para mostrar miembros de la red -->
                       <div id="groupMembers"></div>
                       <!-- div de Modals para cada miembro de la red familiar -->
                       <div id="modalsForMemberStadistics"></div>
+                    </div>
                   </div>
               </div>
               
@@ -108,7 +110,7 @@
 
       <footer class="footer">
         <div class="container">
-            <p>Desarrollado por el equipo Bluetoobers<a href="#">@Aweba13</a>, <a href="#">@aragonc</a>, <a href="#">@debbievejarano</a>.</p>
+            <p class="text-footer">Desarrollado por <strong>#Bluetoobers</strong></p>
         </div>
       </footer>
 
