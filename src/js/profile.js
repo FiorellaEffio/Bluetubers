@@ -92,12 +92,22 @@ const chargeGroupMembers = (currentUserUID) => {
           console.log(groupData[memberUID])
           getDataFirebase('users/'+groupData[memberUID].memberName).then(memberData => {
             members.innerHTML += `
-            <div class="card">
-              <div class="card-body">
-              <h1>${memberData.nombre}</h1>
-              <img width='100px' src= ${memberData.foto} />
-              <button type="button" onclick="mostrarModal('${memberData.nombre}');" class="btn" data-toggle="modal" data-target=${'#R'+memberData.uid}>Reporte</button>
-              </div>
+            <div class="card-user">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="text-center">
+                  <img width='100px' class="img-avatar" src= ${memberData.foto} />
+                  </div>
+                </div>
+                <div class="col-md-10">
+                  <h3 class="user-title">${memberData.nombre}</h3>
+                  <p class="user-type">Pariente</p>
+                  <button type="button" onclick="mostrarModal('${memberData.nombre}');" class="btn btn-sm btn-info" data-toggle="modal" data-target=${'#R'+memberData.uid}>
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                      Reporte
+                  </button>
+                </div>
+              </div> 
             </div>`;
           })
         })
