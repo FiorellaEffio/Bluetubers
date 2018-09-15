@@ -31,6 +31,12 @@ const addRelative = () => {
     let profile = firebase.database().ref().child('groups/' + leaderUID);
     firebase.database().ref("groups/" + leaderUID)
     .push(leaderUID)
+    getDataFirebase('users/'+myUID).then(userData => {
+      console.log(userData)
+      userData.group = leaderUID;
+      firebase.database().ref("users/" + myUID)
+      .set(userData)
+    })
   } else if (leaderUID !== '') {
     let pathGroup = 'groups/'+leaderUID;
     getDataFirebase(pathGroup).then(groupData => {
@@ -40,6 +46,12 @@ const addRelative = () => {
       } else {
         firebase.database().ref("groups/" + leaderUID)
         .push(myUID)
+        getDataFirebase('users/'+myUID).then(userData => {
+          console.log(userData)
+          userData.group = leaderUID;
+          firebase.database().ref("users/" + myUID)
+          .set(userData)
+        })
         console.log('Ya estas en la red familiar')
       }
     })
