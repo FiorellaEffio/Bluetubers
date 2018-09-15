@@ -59,6 +59,24 @@ const addRelative = () => {
     console.log('Ingresa el UID de tu lider')
   }
 }
+//funcion para cargar a todas las personas dentro de mi red familiar
+const chargeGroupMembers = (currentUserUID) => {
+  getDataFirebase('users/'+currentUserUID).then(userData => {
+    if(userData.group !== null) {
+      let members = document.getElementById('groupMembers');
+      getDataFirebase('groups/'+ userData.group).then(groupData => {
+        membersKeys = Object.keys(groupData);
+        membersKeys.forEach(memberUID => {
+          getDataFirebase('users/'+groupData[memberUID]).then(memberData => {
+            members.innerHTML += `<div> ${memberData.nombre}</div>`;
+          })
+        })
+      })
+    } else {
+      console.log('no perteneces a una red familiar aun');
+    }
+  })
+}
 
 //funcion para copiar el id del usuario
 const copyCurrentUserUID = () => {

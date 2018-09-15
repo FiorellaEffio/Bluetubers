@@ -1,6 +1,7 @@
 //le damos la bienvenida al usuario actual
 let userUID = localStorage.currentUser;
 welcomeUser(userUID);
+chargeGroupMembers(userUID);
 document.getElementById('closeSession').addEventListener('click', () => {
   closeSession();
 })
